@@ -19,3 +19,35 @@
 - Sprint 1: Cadastro e listagem de produtos.
 - Sprint 2: Carrinho e checkout.
 - Sprint 3: Avaliações e melhorias.
+------------------------------------------------------------------------
+
+**Entidades:**
+
+-   **Vendedor**
+    -   `id` (PK)\
+    -   `nome` (obrigatório)\
+    -   `email` (único)\
+    -   `telefone` (regex: `^\(\d{2}\)\s\d{4,5}-\d{4}$`)
+-   **Produto**
+    -   `id` (PK)\
+    -   `vendedor_id` (FK → Vendedor)\
+    -   `nome` (até 150 caracteres)\
+    -   `descricao` (texto)\
+    -   `preco` (decimal \> 0)\
+    -   `estoque` (inteiro ≥ 0)
+-   **Carrinho**
+    -   `id` (PK)\
+    -   `usuario_id` (FK)\
+    -   `produto_id` (FK → Produto)\
+    -   `quantidade` (inteiro ≥ 1, ≤ estoque disponível)
+-   **Pedido**
+    -   `id` (PK)\
+    -   `usuario_id` (FK)\
+    -   `total` (calculado)\
+    -   `status` (enum: `PENDENTE`, `PAGO`, `CANCELADO`)
+-   **Avaliacao**
+    -   `id` (PK)\
+    -   `produto_id` (FK → Produto)\
+    -   `usuario_id` (FK)\
+    -   `nota` (1 a 5)\
+    -   `comentario` (opcional, até 500 caracteres)
